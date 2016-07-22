@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAepgfaPgbP1iKpMe7JlWPKCSBJC7vqSPs",
+      authDomain: "summerofcode-1f4d9.firebaseapp.com",
+      databaseURL: "https://summerofcode-1f4d9.firebaseio.com",
+      storageBucket: "summerofcode-1f4d9.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
+</head>
+<body>
+    <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Enter comments"></textarea> <br>
+
+    <input type="submit" id="enterComment" value="comment" />
+
+    <div id="container">
+        
+    </div>
+
+    <script src="topic.js" type="text/javascript" ></script>
+    
+</body>
+</html>
