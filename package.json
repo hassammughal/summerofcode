@@ -1,0 +1,23 @@
+{
+  "name": "mywork",
+  "version": "1.0.0",
+  "description": "Welcome ========",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hassammughal/summerofcode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hassammughal/summerofcode/issues"
+  },
+  "homepage": "https://github.com/hassammughal/summerofcode#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
+}
