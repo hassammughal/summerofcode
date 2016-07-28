@@ -1,27 +1,18 @@
+var port = process.env.PORT || 80;
 var express = require('express');
 var app = express();
-var port = 80;
-var DATA = [];
 var bodyParser = require('body-parser');
+var routes = require(__dirname+"/route.js");
+var DATA = [];
+app.use(express.static('public'));
 
-app.use(express.static('Public'));
+app.use(bodyParser.json()); // for parsing application/json
+
+
+app.get('/getMessage', routes.getMsgs);
+
+app.post('/setMessage', routes.setMsgs);
 
 app.listen(port, function () {
   console.log('Example app listening on port ' + port);
-});
-
-app.use(bodyParser.json());
-
-app.get('/getTodo', function (req, res) {
-    res.send(DATA);
-});
-
-app.post('/setTodo', function (req, res) {
-    var userjson = req.body;
-    DATA = userjson;
-    console.log(userjson);
-});
-
-app.get('/time', function(req, res){
-    res.send( {"time": Date.now()} );
 });
