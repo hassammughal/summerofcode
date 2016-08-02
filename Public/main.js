@@ -1,17 +1,15 @@
-var DATA = [];
-load();
+var listItems = [];
 
-var nick = window.prompt("Enter username");
 // The method fires when user 1 presses send button
 // The method pushes data to the DATA[] array, Renders and saves
- $("#fsubmit").click(function(value){
-    var takeInput = $('#finput').val();
-    
-    DATA.push(nick+":"+takeInput);
-    console.log(DATA);
-    RenderJSON(DATA);
+ $("#submit").click(function(value){
+    var takeInput = $('#input').val();
+    if(takeInput != ""){
+         listItems.push(takeInput);
+    RenderJSON(listItems);
     save();
-    $("#finput").val('');
+    
+    }
    
 });
 
@@ -22,24 +20,27 @@ function RenderJSON(data){
 
         $('#container').empty();
         for(var i=0; i<data.length;i++){    //This loop traverses through the DATA[] array to display message on view.
-            
-        $('#container').append(data[i]+"</br>");
+            var valueToAdd = data[i];
+        $('#container').append('<div id="'+valueToAdd+'"> <input type="checkbox" id="'+valueToAdd+'"> <span id="'+valueToAdd+'">'+valueToAdd+'</span> </br> </div>');
+        $('#'+valueToAdd).on('click', function() {
+            var myid=$(this).attr("id");
+            var index = listItems.indexOf(txt);
+            if(index >-1){
+                listItems.splice(index, 1)
+            }
+        })  
 
         
-        $("#clear").click(function(value){
-           DATA = [];
-           save();
-        });
     }
 }
 
 // This method sends data to the server and stores it there.
 function save(){
     $.ajax({
-	    url: '/setMessage', 
+	    url: '/setToDoList', 
 	    type: 'POST', 
 	    contentType: 'application/json', 
-	    data: JSON.stringify(DATA),
+	    data: todoList,
 	    success:function(res){console.log(res);}
 	});
 }
@@ -47,7 +48,7 @@ function save(){
 // This method loads data from the server
 function load(){
 
-    $.get('/getMessage',function(res){
+    $.get('/getToDoList',function(res){
 		DATA = res;
         RenderJSON(DATA);
 	});
